@@ -42,10 +42,10 @@ npm -v
 1. **Clone the repository** into your preferred directory (for example `/opt/pro-mtls-manager`):
 
    ```bash
-   sudo mkdir -p /opt/pro-mtls-manager
-   sudo chown "$USER":"$USER" /opt/pro-mtls-manager
-   git clone https://github.com/your-org/pro-mtls-manager.git /opt/pro-mtls-manager
-   cd /opt/pro-mtls-manager
+sudo mkdir -p /opt/pro-mtls-manager
+sudo chown "$USER":"$USER" /opt/pro-mtls-manager
+git clone https://github.com/CJNG20u/Pro-mTLS-Manager-v2.git /opt/pro-mtls-manager
+cd /opt/pro-mtls-manager
    ```
 
 2. **Run the setup script:**
