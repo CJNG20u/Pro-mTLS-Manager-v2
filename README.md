@@ -61,6 +61,8 @@ npm -v
 3. **Configure `.env`:**
 
    ```bash
+   cp .env.example .env
+   nano .env
    nano /opt/pro-mtls-manager/.env
    ```
 
