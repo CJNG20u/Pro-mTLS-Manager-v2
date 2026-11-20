@@ -12,7 +12,19 @@ A self-hosted Private Certificate Authority (CA), PKCS#12 (`.p12`) client certif
 
 ---
 
-## Prerequisites (Debian / Ubuntu)
+## Prerequisites (Debian / Ubuntu) 
+## Supported Environments & Requirements
+
+Pro mTLS Manager is designed to run directly on a **Debian or Ubuntu** Linux environment without Docker:
+
+- **Supported Deployment Targets:**
+  - **Bare-Metal Linux Server** (Debian 11/12/13 or Ubuntu 22.04/24.04 LTS)
+  - **Virtual Private Server (VPS)** or **VM** running Debian/Ubuntu
+  - **LXC Container** (such as Proxmox VE Debian/Ubuntu LXC)
+- **System Requirements:**
+  - **Privileges:** Root or `sudo` access (required for `systemd` service installation and local Caddy certificate exports/reloads)
+  - **Resources:** Minimal footprint — 1 vCPU, 512 MB RAM, and 1 GB free disk space are sufficient
+  - **Runtime Dependencies:** OpenSSL, Node.js v18+ (v20 or v22 LTS recommended), `npm`, and `git`
 
 Install OpenSSL, Node.js (v18+ required; v20 or v22 LTS recommended), and npm:
 
