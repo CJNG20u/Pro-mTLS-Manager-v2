@@ -28,6 +28,10 @@ Pro mTLS Manager is designed to run directly on a **Debian or Ubuntu** Linux env
   - **Resources:** Minimal footprint — 1 vCPU, 512 MB RAM, and 1 GB free disk space are sufficient
   - **Runtime Dependencies:** OpenSSL, Node.js v18+ (v20 or v22 LTS recommended), `npm`, and `git`
 
+  You will also need the revocator plugin thats in this link shout out to Gr33nbl00d thank you sir 
+
+  https://github.com/Gr33nbl00d/caddy-revocation-validator
+
 Install OpenSSL, Node.js (v18+ required; v20 or v22 LTS recommended), and npm:
 
 ```bash
