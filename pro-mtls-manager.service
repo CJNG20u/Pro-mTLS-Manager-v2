@@ -21,8 +21,8 @@ Type=simple
 
 # Run as a dedicated, unprivileged service account (recommended)
 # Create with: sudo useradd --system --home-dir /opt/pro-mtls-manager --shell /usr/sbin/nologin pro-mtls
-User=pro-mtls
-Group=pro-mtls
+User=root
+Group=root
 
 # Update this path to match your installation directory
 WorkingDirectory=/opt/pro-mtls-manager
