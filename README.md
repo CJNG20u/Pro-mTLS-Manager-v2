@@ -1,4 +1,4 @@
-# Pro mTLS Manager
+# Pro mTLS Manager v2
 
 A self-hosted Private Certificate Authority (CA), PKCS#12 (`.p12`) client certificate issuer, and OpenSSL Certificate Revocation List (CRL) manager designed for [Caddy](https://caddyserver.com/) on bare-metal Debian/Ubuntu Linux.
 
