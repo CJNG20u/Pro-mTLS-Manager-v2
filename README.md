@@ -63,7 +63,6 @@ npm -v
    ```bash
    cp .env.example .env
    nano .env
-   nano /opt/pro-mtls-manager/.env
    ```
 
    Key environment variables:
