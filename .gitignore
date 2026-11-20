@@ -1,0 +1,41 @@
+# Dependencies & build output
+node_modules/
+dist/
+server.js
+
+# Environment & secrets (keep .env.example tracked)
+.env
+.env.*
+!.env.example
+
+# PKI storage directories (default DATA_DIR and legacy folder)
+data/
+pki_storage/
+
+# Cryptographic keys, certificates, bundles, and revocation lists
+*.key
+*.pem
+*.crt
+*.cer
+*.csr
+*.p12
+*.pfx
+*.crl
+*.srl
+index.txt*
+serial*
+crlnumber*
+
+# Local SQLite databases (if used in custom setups or backups)
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Logs & OS artifacts
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
