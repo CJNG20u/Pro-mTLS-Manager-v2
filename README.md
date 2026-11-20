@@ -52,9 +52,6 @@ npm -v
 2. **Run the setup script:**
 
    ```bash
-   git add package.json package-lock.json
-   git commit -m "Fix esbuild peer dependency version for Vite 8"
-   git push
    chmod +x install.sh
    ./install.sh
    ```
