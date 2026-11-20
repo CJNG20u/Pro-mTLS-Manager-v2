@@ -89,46 +89,6 @@ npm -v
 
 ---
 
-## Configuring a Dedicated User & Passwordless `sudo` for Caddy Reloads
-
-To follow least-privilege best practices, run Pro mTLS Manager as a dedicated non-root system user (`pro-mtls`) and grant it permission **only** to reload Caddy.
-
-1. **Create the service user and shared Caddy certs directory:**
-
-   ```bash
-   sudo useradd --system --home-dir /opt/pro-mtls-manager --shell /usr/sbin/nologin pro-mtls
-   sudo chown -R pro-mtls:pro-mtls /opt/pro-mtls-manager
-   sudo chmod 600 /opt/pro-mtls-manager/.env
-
-   sudo mkdir -p /etc/caddy/certs
-   sudo chown pro-mtls:caddy /etc/caddy/certs
-   sudo chmod 750 /etc/caddy/certs
-   ```
-
-   *(Ensure the `caddy` user can traverse and read `/etc/caddy/certs/ca.crt` and `/etc/caddy/certs/crl.pem`.)*
-
-2. **Create `/etc/sudoers.d/pro-mtls`:**
-
-   First confirm the exact path to `systemctl` on your Debian host (`which systemctl` — usually `/usr/bin/systemctl` on Debian 11/12/13):
-
-   ```bash
-   SYSTEMCTL_BIN="$(command -v systemctl)"
-   echo "pro-mtls ALL=(root) NOPASSWD: ${SYSTEMCTL_BIN} reload caddy" | sudo tee /etc/sudoers.d/pro-mtls
-   sudo chmod 440 /etc/sudoers.d/pro-mtls
-   sudo visudo -cf /etc/sudoers.d/pro-mtls
-   ```
-
-   Verify that `visudo -cf` prints `/etc/sudoers.d/pro-mtls: parsed OK`.
-
-3. **Test passwordless reload as `pro-mtls`:**
-
-   ```bash
-   sudo -u pro-mtls sudo -n systemctl reload caddy
-   ```
-
-   If it exits with status `0` and no password prompt, sudoers is configured correctly.
-
----
 
 ## Running with `systemd`
 
