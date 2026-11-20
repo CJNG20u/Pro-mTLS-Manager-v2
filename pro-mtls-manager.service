@@ -1,0 +1,66 @@
+# ==============================================================================
+# Pro mTLS Manager - systemd Service Unit (Bare-Metal Debian/Ubuntu)
+# ==============================================================================
+# Installation:
+#   1. Replace /opt/pro-mtls-manager and User/Group below if you installed elsewhere.
+#   2. Copy this file to /etc/systemd/system/pro-mtls-manager.service
+#   3. Run:
+#        sudo systemctl daemon-reload
+#        sudo systemctl enable --now pro-mtls-manager
+#        sudo systemctl status pro-mtls-manager
+# ==============================================================================
+
+[Unit]
+Description=Pro mTLS Manager (Private CA & OpenSSL CRL Dashboard for Caddy)
+Documentation=https://github.com/your-org/pro-mtls-manager
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+
+# Run as a dedicated, unprivileged service account (recommended)
+# Create with: sudo useradd --system --home-dir /opt/pro-mtls-manager --shell /usr/sbin/nologin pro-mtls
+User=pro-mtls
+Group=pro-mtls
+
+# Update this path to match your installation directory
+WorkingDirectory=/opt/pro-mtls-manager
+
+# Load configuration from .env (ensure permissions are 0600 owned by pro-mtls)
+EnvironmentFile=/opt/pro-mtls-manager/.env
+Environment=NODE_ENV=production
+
+# Run the TypeScript server via the locally installed tsx binary (works on Node 18/20/22+)
+ExecStart=/opt/pro-mtls-manager/node_modules/.bin/tsx /opt/pro-mtls-manager/server.ts
+
+# Automatic restart on crash
+Restart=on-failure
+RestartSec=5
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+# Standard journald logging (view with: journalctl -u pro-mtls-manager -f)
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=pro-mtls-manager
+
+# Restrict default file permissions for newly created private keys and certs
+UMask=0077
+
+# ------------------------------------------------------------------------------
+# Security Hardening
+# ------------------------------------------------------------------------------
+# NOTE: NoNewPrivileges MUST remain "false" if this service invokes
+# `sudo systemctl reload caddy` via CADDY_RELOAD_CMD. If you only use remote
+# SSH sync or do not use sudo locally, you may set NoNewPrivileges=true.
+NoNewPrivileges=false
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+
+# Allow write access only to the app data directory and local Caddy cert export directory
+ReadWritePaths=/opt/pro-mtls-manager/data /etc/caddy/certs
+
+[Install]
+WantedBy=multi-user.target

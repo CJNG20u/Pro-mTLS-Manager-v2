@@ -1,0 +1,8 @@
+{
+  "name": "Pro-mTLS-Manager v2 Public",
+  "description": "This is Version is for the Public fot Github Community",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
